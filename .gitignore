@@ -3,3 +3,5 @@
 .sass-cache
 .scssc
 build/
+
+.ruby-*

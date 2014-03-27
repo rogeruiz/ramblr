@@ -1,4 +1,4 @@
-source :rubygems
+source "https://rubygems.org"
 
 gem "middleman", "~>3.0.0"
 gem "middleman-favicon-maker", "~>3.0.0", :git => "git://github.com/follmann/middleman-favicon-maker.git"
