@@ -1,7 +1,8 @@
-<img
-  {{bind-attr
-    src="content.images.low_resolution.url"
-    height="content.images.low_resolution.height"
-    width="content.images.low_resolution.width"
-  }}
-alt="instagram low_resolution">
+<img class="instagram-thumbnail__image" {{bind-attr src="content.images.thumbnail.url"}} alt="instagram low_resolution">
+{{#if isActive}}
+  {{#if content.likeCount}}
+    <span class="instagram-thumbnail__like-count">{{content.likeCount}}&hearts;</span>
+  {{else}}
+    <span class="instagram-thumbnail__like-count">&#9785;</span>
+  {{/if}}
+{{/if}}
