@@ -1,34 +1,62 @@
 import Ember from 'ember';
 import ajax from '../util/ajax';
-import url from '../mixins/url';
+import baseService from '../mixins/baseService';
+import Media from '../models/media';
 
-export default Ember.Object.extend(url, {
-  client_id: 'f3c631929eb0415f906f6f0e59b10b1b',
+/*
+  Instagram API Endpoints
+  Documentation can be found here:
+  http://instagram.com/developer/endpoints/
+*/
+
+export default Ember.Object.extend(baseService, {
+  requestParams: {
+    client_id: 'f3c631929eb0415f906f6f0e59b10b1b',
+  },
   host: 'https://api.instagram.com',
   namespace: 'v1',
 
-  // /tags/tag-name/media/recent
-  recent: function(type, id) {
-    var endpoint = this.buildUrl({
-      type: type,
-      id: id,
-      record: 'media/recent'
-    });
+  _serializeMedia: function(response) {
+    var data, i;
+    var content = [];
+
+    for (i = 0; i < response.data.length; i++) {
+      data = response.data[i];
+      content.push(Media.create({
+        images: data.images,
+        videos: data.videos || {},
+        likeCount: data.likes.count,
+        link: data.link,
+        location: data.location
+      }));
+    }
+
+    return content;
+  },
+
+  recentTags: function(tag_id) {
+    var service = this;
 
     return ajax.getJSON({
-      url: endpoint
+      url: this.buildUrl({
+        type: 'tags',
+        id: tag_id,
+        record: 'media/recent'
+      })
+    }).then(function(response) {
+      return service._serializeMedia(response);
     });
 
   },
 
-  search: function(search_type, payload) {
-    var endpoint = this.buildUrl({
-      type: search_type,
-      id: 'search',
-      data: payload
+  searchTags: function(payload) {
+    return ajax.getJSON({
+      url: this.buildUrl({
+        type: 'tags',
+        record: 'search',
+        data: payload
+      })
     });
-
-    return ajax(endpoint);
   }
 
 });
