@@ -1,42 +1,11 @@
 import Ember from 'ember';
 import ajax from '../util/ajax';
+import url from '../mixins/url';
 
-
-export default Ember.Object.extend({
+export default Ember.Object.extend(url, {
   client_id: 'f3c631929eb0415f906f6f0e59b10b1b',
   host: 'https://api.instagram.com',
   namespace: 'v1',
-
-  buildUrl: function(payload) {
-    var url = [
-      this.host,
-      this.namespace
-    ];
-
-    url.push(payload.type);
-    url.push(payload.id);
-    if (payload.record) {
-      url.push(payload.record);
-    }
-
-    url = url.join('/');
-
-    return this.buildParams(url, payload);
-  },
-
-  buildParams: function(url, payload) {
-
-    var data = {
-      client_id: this.client_id
-    };
-
-    if (payload.data) {
-      Ember.$.extend(data, payload.data);
-    }
-
-    return url += '?' + Ember.$.param(data);
-
-  },
 
   // /tags/tag-name/media/recent
   recent: function(type, id) {
