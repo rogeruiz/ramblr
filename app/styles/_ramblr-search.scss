@@ -16,8 +16,11 @@
   font-size: 16px;
   line-height: 1;
   height: 25px;
-
   border-radius: 3px;
+  &:focus {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
 .ramblr-search__results {
@@ -25,7 +28,9 @@
   position: absolute;
   top: 25px;
   list-style: none;
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .ramblr-map-marker {
@@ -46,4 +51,5 @@
 
 .ramblr-search__powered-by-google {
   float: right;
+  margin-top: 10px;
 }
