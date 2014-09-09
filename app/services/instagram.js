@@ -16,27 +16,7 @@ export default Ember.Object.extend(baseService, {
   host: 'https://api.instagram.com',
   namespace: 'v1',
 
-  _serializeMedia: function(response) {
-    var data, i;
-    var content = [];
-
-    for (i = 0; i < response.data.length; i++) {
-      data = response.data[i];
-      content.push(Media.create({
-        images: data.images,
-        videos: data.videos || {},
-        likeCount: data.likes.count,
-        link: data.link,
-        location: data.location
-      }));
-    }
-
-    return content;
-  },
-
   recentTags: function(tag_id) {
-    var service = this;
-
     return ajax.getJSON({
       url: this.buildUrl({
         type: 'tags',
@@ -44,9 +24,8 @@ export default Ember.Object.extend(baseService, {
         record: 'media/recent'
       })
     }).then(function(response) {
-      return service._serializeMedia(response);
+      return Media.serialize(response);
     });
-
   },
 
   searchTags: function(payload) {
