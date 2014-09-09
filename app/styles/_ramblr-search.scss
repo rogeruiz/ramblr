@@ -1,0 +1,49 @@
+.ramblr-search {
+  position: relative;
+}
+
+%ramblr-search {
+  box-sizing: border-box;
+  width: 500px;
+  padding: 12px 10px;
+  margin: 0;
+  border: 1px solid $color-gray;
+}
+
+.ramblr-search__input {
+  @extend %ramblr-search;
+  outline: none;
+  font-size: 16px;
+  line-height: 1;
+  height: 25px;
+
+  border-radius: 3px;
+}
+
+.ramblr-search__results {
+  @extend %ramblr-search;
+  position: absolute;
+  top: 25px;
+  list-style: none;
+  background: white;
+}
+
+.ramblr-map-marker {
+  color: $color-gray;
+}
+
+.ramblr-search__result,
+.ramblr-search__result__link {
+  color: #454545;
+  text-decoration: none;
+}
+
+.ramblr-search__result {
+  margin: 5px 0;
+  padding: 0;
+  border-bottom: 1px solid $color-gray;
+}
+
+.ramblr-search__powered-by-google {
+  float: right;
+}

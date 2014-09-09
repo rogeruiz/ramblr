@@ -1,6 +1,9 @@
-<nav>
-  {{ramblr-search value=searchValue search="searchRamblr"}}
-  <h2 id='title'>Ramblr</h2>
-</nav>
+<header class='ramblr-header js-header'>
+  <nav class='ramblr-nav'>
+    {{ramblr-search value=searchValue search="searchRamblr"}}
+    <h2 id='title'>{{link-to 'Ramblr' 'index'}}</h2>
+    <i class="fa fa-info-circle ramblr-info" {{action 'showRamblrInfo'}}></i>
+  </nav>
+</header>
 
 {{outlet}}

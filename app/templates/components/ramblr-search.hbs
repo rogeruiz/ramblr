@@ -1,1 +1,23 @@
-{{input type="text" value=value enter="submit"}}
+{{input class='ramblr-search__input' type='text' value=value enter='submit' focus-in='showResults' focus-out='hideResults'}}
+
+{{#if showResults}}
+  <ul class='ramblr-search__results'>
+    {{#each place in suggestedPlaces}}
+      <li class='ramblr-search__result'>
+        <i class='fa fa-map-marker ramblr-map-marker'></i>
+        {{link-to place.description 'place' place.place_id class='ramblr-search__result__link'}}
+      </li>
+    {{else}}
+      {{#if isTag}}
+        <li>Search for {{value}}</li>
+      {{else}}
+        <li>Search by place or #hashtag.</li>
+      {{/if}}
+    {{/each}}
+    {{#if suggestedPlaces}}
+      <li class='ramblr-search__powered-by-google'>
+        <img src='/assets/images/powered-by-google-on-white.png' alt='Google logo'>
+      </li>
+    {{/if}}
+  </ul>
+{{/if}}

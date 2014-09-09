@@ -1,0 +1,10 @@
+$color-gray: #b4b4b4;
+
+@import 'ramblr-search';
+
+.ramblr-info {
+  color: $color-gray;
+  font-size: 22px;
+  text-decoration: none;
+  cursor: pointer;
+}
