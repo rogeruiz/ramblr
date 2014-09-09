@@ -5,10 +5,10 @@ import loadInitializers from 'ember/load-initializers';
 Ember.MODEL_FACTORY_INJECTIONS = true;
 
 var App = Ember.Application.extend({
-  modulePrefix: 'ramblr-ember', // TODO: loaded via config
+  modulePrefix: 'ramblr', // TODO: loaded via config
   Resolver: Resolver
 });
 
-loadInitializers(App, 'ramblr-ember');
+loadInitializers(App, 'ramblr');
 
 export default App;
