@@ -12,5 +12,7 @@ export default {
     application.inject('route', 'google', 'services:google');
     application.inject('route', 'foursquare', 'services:foursquare');
     application.inject('route', 'instagram', 'services:instagram');
+
+    application.inject('component:ramblrSearch', 'google', 'services:google');
   }
 };

@@ -32,12 +32,13 @@ export default Ember.Mixin.create({
     return url += '?' + Ember.$.param(data);
   },
 
-  injectScript: function() {
+  _injectScript: function() {
     if (this.async) {
       var script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = this.buildUrl();
       document.body.appendChild(script);
+      window[this.requestParams.callback] = Ember.$.noop;
     }
   }.on('init')
 });
